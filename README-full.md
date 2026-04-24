@@ -1,7 +1,3 @@
-아래 내용을 그대로 `README.md`로 저장하면 됩니다.
-현재 최종 `sts.bat` 기준 기능을 반영했습니다. 메뉴, marker 파일, 중복 실행 방지, MyBatis 설정, workspace 초기화, 사용법까지 포함했습니다. 
-
-````md
 # STS3 Spring MVC 수업용 배치 파일
 
 `sts.bat`는 STS3 기반 Spring Legacy MVC 수업에서 반복적으로 수행해야 하는 프로젝트 초기화 작업을 자동화하기 위한 Windows 배치 파일입니다.
@@ -14,6 +10,12 @@
 - STS3 워크스페이스 초기화
 - 사용법 안내
 - 중복 실행 방지
+
+---
+
+## 배치 파일 다운로드
+
+[sts.bat 다운로드](https://github.com/pinnpublic/sts3-initializer/releases/latest/download/sts.bat)
 
 ---
 

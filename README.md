@@ -4,6 +4,12 @@
 
 ---
 
+## 배치 파일 다운로드
+
+[sts.bat 다운로드](https://github.com/pinnpublic/sts3-initializer/releases/latest/download/sts.bat)
+
+---
+
 ## 실행 위치
 
 `sts.bat`는 반드시 **워크스페이스 루트 폴더**에 둡니다.
