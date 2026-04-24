@@ -1,0 +1,227 @@
+
+현재 작업 폴더\.metadata\.plugins\org.springsource.ide.eclipse.commons.content.core
+
+
+자 내가 윈도우 bat를 만들고 싶어.
+업무를 설명할께.
+
+1. 시작
+
+아래 정보를 일단 수집해야 해.
+2. 현재 실행중인 폴더명이 [프로젝트명]이야
+3. 현재 실행중인 폴더 아래 > src / main / java / 폴더명1 / 폴더명2 / 폴더명3 이 존재해
+4. 폴더명1.폴더명2 가 [패키지명]이야.
+5. 폴더명3 이 [아티팩트명]이야
+
+수집된 정보와 인터넷에서 다운받은 파일로 로컬 파일 내용을 수정해야해.
+6. "https://paper.pe.kr/sts-template/mvc/pom.xml"을 다운받아. 그리고 로컬 현재 작업 폴더의 pom.xml을 덮어쓰기해.
+7. 덮어쓰기한 pom.xml의 내용을 수정해야 해.
+	- $${project}를 찾아서 [프로젝트명]으로 수정해
+	- $${group}를 찾아서 [패키지명]으로 수정해
+	- $${artifact}를 찾아서 [아티팩트명]으로 수정해
+8. "https://paper.pe.kr/sts-template/mvc/web.xml"을 다운받아. 그리고 "로컬 현재 작업 폴더/src/main/webapp/WEB-INF/web.xml"을 덮어쓰기 해.
+9. "https://paper.pe.kr/sts-template/mvc/root-context.xml"을 다운받아. 그리고 "로컬 현재 작업 폴더/src/main/webapp/WEB-INF/spring/root-context.xml"을 덮어쓰기 해.
+10. "https://paper.pe.kr/sts-template/mvc/servlet-context.xml"을 다운받아. 그리고 "로컬 현재 작업 폴더/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"을 덮어쓰기 해.
+11. "https://paper.pe.kr/sts-template/mvc/logback.xml"을 다운받아. 그리고 "로컬 현재 작업 폴더/src/main/resources/logback.xml"로 이동 해.
+12. "https://paper.pe.kr/sts-template/mvc/log4jdbc.log4j2.properties"을 다운받아. 그리고 "로컬 현재 작업 폴더/src/main/resources/log4jdbc.log4j2.properties"로 이동 해.
+13. "로컬 현재 작업 폴더/src/main/resources/log4j.xml"을 삭제해
+
+이런 작업을 수행하고, 단계별 로그를 찍는 bat를 만들어줘
+
+
+14. "로컬 현재 작업 폴더/src/main/java/폴더명1/폴더명2/폴더명/HomeController.java" 파일을 삭제해.
+15. "로컬 현재 작업 폴더/src/main/webapp/WEB-INF/views/index.jsp" 파일을 삭제해.
+16. "로컬 현재 작업 폴더/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"에서 $${group}를 찾아서 [패키지명]으로 수정해
+17. "로컬 현재 작업 폴더/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"에서 $${artifact}를 찾아서 [아티팩트명]으로 수정해
+
+
+
+
+방금 했던거의 상위 메뉴를 만들거야.
+
+bat을 처음 실행하면
+
+제목을 "스프링 수업 배치"라고 띄우고
+
+메뉴를
+1. Spring MVC Project 초기화
+2. 워크스페이스 초기화
+3. 종료 //이건 1,2번 아닌 모든거에 반응
+
+해서 메뉴를 선택하면
+
+[1. Spring MVC Project 초기화] 기능은..
+위의 미리 만들어 놓은 걸 실행할건데.. 조금 전작업이 필요해
+아까는 STS 프로젝트에서 bat를 실행한다고 가정한거야
+근데 이번에는 프로젝트가 여러개 있는 워크스페이스에서 실행할거야
+그래서 어떤 프로젝트를 1~17단계 처리할지를 사용자에게 물어봐야해.
+그래서 [1. Spring MVC Project 초기화]를 선택하면 현재 작업 폴더내의 프로젝트 폴더명을 선택할 수 있게 보여주고. 그 중 하나를 선택하면 1~17단계가 진행되게 해줘
+
+[2. 워크스페이스 초기화]를 선택하면
+"현재 작업 폴더/.metadata/.pluginsorg.springsource.ide.eclipse.commons.content.core" 폴더를 생성하고 그 안에 "https://paper.pe.kr/sts-template/https-content.xml" 파일을 다운로드 받아서 넣어줘. 
+"현재 작업 폴더/.metadata/.pluginsorg.springsource.ide.eclipse.commons.content.core/https-content.xml" 이렇게 되게
+
+
+
+
+메뉴를 하나더 추가할거야.
+1. Spring MVC Project 초기화
+2. MyBatis 설정
+3.워크스페이스 초기화
+4.종료
+
+사이에 [2. MyBatis 설정]를 추가해줘
+이걸 선택하면
+"로컬 현재 작업 폴더/src/main/webapp/WEB-INF/spring/root-context.xml" 안에 </beans> 라인 위에다가 아래 내용을 추가해서 저장해줘
+
+---- 이 아래 줄부터
+    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+        <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe"></property>
+        <property name="username" value="spring"></property>
+        <property name="password" value="java1234"></property>
+    </bean>
+    
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <constructor-arg ref="hikariConfig"></constructor-arg>
+    </bean>
+    
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="mapperLocations" value="classpath:mappers/*.xml"></property>
+        <property name="configLocation" value="classpath:config/mybatis-config.xml"></property>
+    </bean>
+        
+    <bean class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sessionFactory"></constructor-arg>
+    </bean>
+--- 이 위의 줄까지 추가
+
+그리고 "https://paper.pe.kr/sts-template/mvc/mybatis-config.xml"을 다운받아. 그리고 "로컬 현재 작업 폴더/src/main/resources/config/mybatis-config.xml" 에 저장해.
+
+그리고. "https://paper.pe.kr/sts-template/mvc/mapper.xml"을 다운받아. 그리고 파일명을 [아티팩트명].xml로 바꾸고 "로컬 현재 작업 폴더/src/main/resources/config/[아티팩트명].xml" 에 저장해.
+
+
+
+
+
+
+
+
+
+
+메뉴를 하나더 추가할거야.
+1. Spring MVC Project 초기화
+2. MyBatis 설정
+3. Spring MVC Project 초기화(MyBatis 설정 포함)
+4. 워크스페이스 초기화
+5. 사용법
+6. 종료
+
+
+
+
+
+1. 새 워크스페이스로 사용할 폴더를 생성한다.
+2. 'sts.bat'를 1의 위치로 이동한다.(아직 실행은 안함)
+3. STS3를 실행 후 종료한다.(최소 1회 실행)
+4. 'sts.bat'를 실행한다. > [4. 워크스페이스 초기화]를 선택한다.
+5. STS3를 다시 실행 후 'Spring MVC Project'를 생성한다.
+6. 프로젝트의 성격에 따라 1~3번 기능을 선택한다.
+    - 1번: 프로젝트 기본 설정
+    - 2번: 1번을 실행 후 추후 MyBatis 설정 추가(1번 선행 후)
+    - 3번: 1번과 2번을 동시에 설정
+
+
+
+
+[2. MyBatis 설정] 기능이 문제가 생겼어.
+
+하나를 내가 깜빡했어.
+일단 [2. MyBatis 설정]을 선택하면 "로컬 현재 작업 폴더/pom.xml"에서 </dependencies>를 찾아서 그위 라인에 아래 내용이 추가되어야 해.(기존 pom.xml 내용처럼 코드 들여쓰기 잘해줘)
+
+*** 절대 "(따옴표) 니맘대로 삭제하지마. 아래 코드는 있는 그대로 붙여넣기해.
+
+---- 이 아래 줄부터
+        <!-- JDBC -->
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>23.7.0.25.01</version>
+        </dependency>
+        
+        <!-- MyBatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis-spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+        
+        <!-- DBCP -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>4.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bgee.log4jdbc-log4j2</groupId>
+            <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+            <version>1.16</version>
+        </dependency>
+--- 이 위의 줄까지 추가
+
+
+
+
+
+그리고
+
+powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+    "$path = '%ROOT_CONTEXT_FILE%';" ^
+    "$text = Get-Content -LiteralPath $path -Raw -Encoding UTF8;" ^
+    "$insertLines = @(" ^
+    "'    <bean id=""hikariConfig"" class=""com.zaxxer.hikari.HikariConfig"">'," ^
+    "'        <property name=""driverClassName"" value=""net.sf.log4jdbc.sql.jdbcapi.DriverSpy""></property>'," ^
+    "'        <property name=""jdbcUrl"" value=""jdbc:log4jdbc:oracle:thin:@localhost:1521:xe""></property>'," ^
+    "'        <property name=""username"" value=""spring""></property>'," ^
+    "'        <property name=""password"" value=""java1234""></property>'," ^
+    "'    </bean>'," ^
+    "'    '," ^
+    "'    <bean id=""dataSource"" class=""com.zaxxer.hikari.HikariDataSource"" destroy-method=""close"">'," ^
+    "'        <constructor-arg ref=""hikariConfig""></constructor-arg>'," ^
+    "'    </bean>'," ^
+    "'    '," ^
+    "'    <bean id=""sessionFactory"" class=""org.mybatis.spring.SqlSessionFactoryBean"">'," ^
+    "'        <property name=""dataSource"" ref=""dataSource""></property>'," ^
+    "'        <property name=""mapperLocations"" value=""classpath:mappers/*.xml""></property>'," ^
+    "'        <property name=""configLocation"" value=""classpath:config/mybatis-config.xml""></property>'," ^
+    "'    </bean>'," ^
+    "'        '," ^
+    "'    <bean class=""org.mybatis.spring.SqlSessionTemplate"">'," ^
+    "'        <constructor-arg ref=""sessionFactory""></constructor-arg>'," ^
+    "'    </bean>'," ^
+    "''" ^
+    ");" ^
+    "$insert = [string]::Join([Environment]::NewLine, $insertLines);" ^
+    "if ($text -notmatch '</beans>') { Write-Host '[ERROR] </beans> 라인을 찾을 수 없습니다.'; exit 1; }" ^
+    "$text = $text.Replace('</beans>', $insert + [Environment]::NewLine + '</beans>');" ^
+    "Set-Content -LiteralPath $path -Value $text -Encoding UTF8"
+
+
+여기 있는 XML의 모든 attribute의 "가 사라져;; 
+<bean id="hikariConfig 딱 이 첫번째 " 빼고는 전부 사라져서 에러나
