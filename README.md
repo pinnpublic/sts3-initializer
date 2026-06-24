@@ -29,10 +29,10 @@ workspace
 ## 메뉴
 
 ```text
-1. Spring MVC Project 초기화
-2. MyBatis 설정
-3. Spring MVC Project 초기화(MyBatis 설정 포함)
-4. 워크스페이스 초기화
+1. Spring MVC Project 초기화 # 오래된 3.1.1.RELEASE 템플릿을 5.3.9 Last Stable 템플릿으로 변경한다.
+2. MyBatis 설정 # 기존 프로젝트에 MyBatis 관련 설정과 파일을 추가한다.
+3. Spring MVC Project 초기화(MyBatis 설정 포함) # 1번과 2번을 동시에 실행한다.
+4. 워크스페이스 초기화 # 새로 만든 워크스페이스에서 Spring Legacy Project를 선택할 수 있게 한다.(새 워크스페이스 생성 직후 이 항목 1회 실행)
 5. 사용법
 6. 종료
 ```
