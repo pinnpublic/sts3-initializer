@@ -58,7 +58,7 @@ workspace
 
 Spring MVC Project 기본 설정을 수업용 템플릿으로 교체합니다.
 
-주요 작업:
+주요 작업: 스프링 버전 업그레이드 + log 라이브러리 교체 및 설정
 
 * `pom.xml` 다운로드 및 치환
 * `web.xml` 다운로드
